@@ -36,5 +36,9 @@ int main()
         {
             plus(str[i-1],str[i+1])
         }
+        else if (str[i]=='*')
+        {
+            star(str[i-1]);
+        }
     }
 }
