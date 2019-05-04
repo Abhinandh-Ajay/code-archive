@@ -1,10 +1,13 @@
 #include <iostream>
 #include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
+char states[20][20],str[20];
 int s=0;
-void plus(a,b)
+
+void r_plus(char a,char b)
 {
     states[s][s+1] = 'E';
     states[s][s+3] = 'E';
@@ -14,18 +17,43 @@ void plus(a,b)
     states[s+3][s+5] = 'E';
     s = s + 5;
 }
-void star(a)
+void r_star(char a)
 {
     states[s][s+1] = a;
     states[s][s+2] = 'E';
     states[s+1][s] = 'E';
-    s = s + 2
+    s = s + 2;
+}
+void r_dot(char a)
+{
+    states[s][s+1] = a;
+    s = s + 1;
+}
+void display()
+{
+    int i,j;
+    cout<<"--------------------\n";
+    cout<<"  ";
+    for(i=0;i<s;i++)
+    {
+        cout<<i+1<<" ";
+    }
+    cout<<endl;
+    for(i=0;i<s;i++)
+    {
+        cout<<i+1<<"  ";
+        for(j=0;j<s;j++)
+        {
+            cout<<states[i][j]<<" ";
+        }
+        cout<<endl;
+    }
 }
 int main()
 {
-    int ;
-    char str[20], states[20][20];
-    cin >> str;
+    int i;
+    cout<<"Enter a regular expression\n";
+    cin>>str;
     for(i=0;i<strlen(str);i++)
     {
         if (str[i+1]!='*' || str[i+1]!='+' || str[i+1]!='(' || str[i+1]!=')')
@@ -34,11 +62,16 @@ int main()
         }
         else if (str[i]=='+')
         {
-            plus(str[i-1],str[i+1])
+            r_plus(str[i-1],str[i+1]);
         }
         else if (str[i]=='*')
         {
-            star(str[i-1]);
+            r_star(str[i-1]);
+        }
+        else
+        {
+            r_dot(str[i]);
         }
     }
+    display();
 }
