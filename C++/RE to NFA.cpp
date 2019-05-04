@@ -41,10 +41,10 @@ void display()
     cout<<endl;
     for(i=0;i<s;i++)
     {
-        cout<<i+1<<"  ";
+        cout<<i+1<<" ";
         for(j=0;j<s;j++)
         {
-            cout<<states[i][j]<<" ";
+            cout<<states[i][j]<<"  ";
         }
         cout<<endl;
     }
@@ -56,9 +56,9 @@ int main()
     cin>>str;
     for(i=0;i<strlen(str);i++)
     {
-        if (str[i+1]!='*' || str[i+1]!='+' || str[i+1]!='(' || str[i+1]!=')')
+        if (isalpha(str[i]) && isalpha(str[i+1]))
         {
-
+            r_dot(str[i]);
         }
         else if (str[i]=='+')
         {
@@ -70,7 +70,7 @@ int main()
         }
         else
         {
-            r_dot(str[i]);
+
         }
     }
     display();
