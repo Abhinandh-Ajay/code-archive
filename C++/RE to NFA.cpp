@@ -28,7 +28,6 @@ void r_dot(char a)
 {
     states[s][s+1] = a;
     s = s + 1;
-    cout<<"Dot";
 }
 void display()
 {
