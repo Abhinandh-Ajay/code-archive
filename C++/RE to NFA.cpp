@@ -28,6 +28,7 @@ void r_dot(char a)
 {
     states[s][s+1] = a;
     s = s + 1;
+    cout<<"Dot";
 }
 void display()
 {
@@ -63,13 +64,14 @@ int main()
     }
     for(i=0;i<strlen(str);i++)
     {
-        if (isalpha(str[i]) && isalpha(str[i+1]))
+        if ((isalpha(str[i]) && isalpha(str[i+1])) || (isalpha(str[i]) && str[i+1]=='\0'))
         {
             r_dot(str[i]);
         }
         else if (str[i]=='+')
         {
             r_plus(str[i-1],str[i+1]);
+            i++;
         }
         else if (str[i]=='*')
         {
@@ -80,5 +82,6 @@ int main()
 
         }
     }
+    s++;
     display();
 }
