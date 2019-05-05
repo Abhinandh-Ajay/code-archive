@@ -44,16 +44,23 @@ void display()
         cout<<i+1<<" ";
         for(j=0;j<s;j++)
         {
-            cout<<states[i][j]<<"  ";
+            cout<<states[i][j]<<" ";
         }
         cout<<endl;
     }
 }
 int main()
 {
-    int i;
+    int i,j;
     cout<<"Enter a regular expression\n";
     cin>>str;
+    for(i=0;i<20;i++)
+    {
+        for(j=0;j<20;j++)
+        {
+            states[i][j]=' ';
+        }
+    }
     for(i=0;i<strlen(str);i++)
     {
         if (isalpha(str[i]) && isalpha(str[i+1]))
