@@ -2,8 +2,8 @@
 #include <string.h>
 #include <ctype.h>
 using namespace std;
-char pr[20][20],L[20];
-int tc=0;
+char pr[20][20],L[20],T[20];
+int lc=0,tc=0;
 void findL(int j)
 {
     int i,flag=1,k;
@@ -12,14 +12,35 @@ void findL(int j)
     {
         if(!isupper(pr[j][i]))
         {
-            for(k=0;k<tc;k++)
+            for(k=0;k<lc;k++)
             {
                 if(L[k]==pr[j][i])
                 flag=0;
             }
             if(flag==1)
             {
-                L[tc++]=pr[j][i];
+                L[lc++]=pr[j][i];
+            }
+            break;
+        }
+    }
+}
+void findT(int j)
+{
+    int i,flag=1,k;
+    flag=1;
+    for(i=strlen(pr[j])-1;i>=3;i--)
+    {
+        if(!isupper(pr[j][i]))
+        {
+            for(k=0;k<tc;k++)
+            {
+                if(T[k]==pr[j][i])
+                flag=0;
+            }
+            if(flag==1)
+            {
+                T[tc++]=pr[j][i];
             }
             break;
         }
@@ -28,16 +49,19 @@ void findL(int j)
 void traversal(int j,int n)
 {
     int i;
-    if(isupper(pr[j][3]))
+    for(i=j+1;i<n;i++)
     {
-        for(i=j+1;i<n;i++)
+        if(pr[j][3]==pr[i][0])
         {
-            if(pr[j][3]==pr[i][0])
-            {
-                findL(i);
-                if(isupper(pr[i][3]))
-                    traversal(i,n);
-            }
+            findL(i);
+            findT(i);
+            if(isupper(pr[i][3]))
+                traversal(i,n);
+        }
+        else
+        {
+            findL(i);
+            findT(i);
         }
     }
 }
@@ -52,7 +76,7 @@ int main()
     {
         cin>>pr[i];
     }
-    cout<<"Enter NL to find leading and trialing\n";
+    cout<<"Enter NT to find leading and trialing\n";
     cin>>s;
     for(i=0;i<n;i++)
     {
@@ -63,6 +87,8 @@ int main()
         }
     }
     findL(pos);
+    findT(pos);
     traversal(pos,n);
-    cout<<L;
+    cout<<"The Leading of "<<s<<" is: "<<L<<endl;
+    cout<<"The Trailing of "<<s<<" is: "<<T<<endl;
 }
