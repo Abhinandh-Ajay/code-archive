@@ -14,9 +14,9 @@ int main()
     {
         for(i=0;i<n;i++)
         {
-            if(str[i]=='*')
+            if(str[i]=='/')
             {
-                cout<<"t"<<t<<" = "<<str[i-1]<<" * "<<str[i+1]<<endl;
+                cout<<"t"<<t<<" = "<<str[i-1]<<" / "<<str[i+1]<<endl;
                 str.replace(i-1,3,to_string(t));
                 t++;
                 n=n-2;
@@ -24,9 +24,9 @@ int main()
         }
         for(i=0;i<n;i++)
         {
-            if(str[i]=='/')
+            if(str[i]=='*')
             {
-                cout<<"t"<<t<<" = "<<str[i-1]<<" / "<<str[i+1]<<endl;
+                cout<<"t"<<t<<" = "<<str[i-1]<<" * "<<str[i+1]<<endl;
                 str.replace(i-1,3,to_string(t));
                 t++;
                 n=n-2;
